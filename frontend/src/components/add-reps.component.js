@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import AppContext from '../context/app.context'
 import { Button } from 'reactstrap'
+import url from './url'
 
 export default class AddReps extends Component {
     
@@ -19,7 +20,7 @@ export default class AddReps extends Component {
     }
     
     componentDidMount = () => {
-        axios.get(`http://localhost:5000/exercises/${this.props.match.params.id}`)
+        axios.get(`${url}exercises/${this.props.match.params.id}`)
         .then(res => {
             this.setState({
                 username: res.data.username,
@@ -89,7 +90,7 @@ export default class AddReps extends Component {
         
         // PREBUILD console.log(exercise.currentReps)
         
-        axios.post(`http://localhost:5000/exercises/update/${this.props.match.params.id}`, exercise)
+        axios.post(`${url}exercises/update/${this.props.match.params.id}`, exercise)
         .then(res => console.log(res.data))
     }
 

@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import AppContext from '../context/app.context'    
+import AppContext from '../context/app.context'   
+import url from './url'
+
 // totalLevels
 // repsPerLevel
 // currentReps
@@ -28,7 +30,7 @@ export default class ExerciseList extends Component {
     }
     
     componentDidMount = () => {
-        axios.get('http://localhost:5000/exercises/', this.context.tokenConfig())
+        axios.get(`${url}exercises/`, this.context.tokenConfig())
         .then(res => {
             const exercisesByUserId = res.data
             this.setState({
@@ -39,12 +41,13 @@ export default class ExerciseList extends Component {
     }
 
     deleteExercise = (id) => {
-        axios.delete(`http://localhost:5000/exercises/${id}`)
+        if (window.confirm("Delete exercise?")) {
+        axios.delete(`${url}exercises/${id}`)
         // PREBUILD .then(res => console.log(res.data))
         this.setState({
             exercises: this.state.exercises.filter(el => el._id !== id)
         })
-    }
+    }}
 
     exerciseList = () => {
         return this.state.exercises.map(currentexercise => {

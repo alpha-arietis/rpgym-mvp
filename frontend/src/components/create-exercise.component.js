@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import AppContext from '../context/app.context'
 import { Button } from 'reactstrap'
+import url from './url'
     
 
 export default class CreateExercise extends Component {
@@ -22,7 +23,7 @@ export default class CreateExercise extends Component {
     componentDidMount = () => {
         if (this.context.user) {
         //console.log(this.context.user.id)
-        axios.get(`http://localhost:5000/users/${this.context.user.id}`, this.context.tokenConfig())
+        axios.get(`${url}users/${this.context.user.id}`, this.context.tokenConfig())
         .then(res => {
                 //console.log(res.data.username)
             // if (res.data.length > 0) {
@@ -75,7 +76,7 @@ export default class CreateExercise extends Component {
             totalXP: this.state.totalXP
         } 
         //console.log(exercise)
-        axios.post('http://localhost:5000/exercises/add', exercise, this.context.tokenConfig())
+        axios.post(`${url}exercises/add`, exercise, this.context.tokenConfig())
         // PREBUILD .then(res => console.log(res.data))
         window.location = '/list'
     }

@@ -38,9 +38,7 @@ if (process.env.NODE_ENV === 'production') {
     // Set static folder
     app.use(express.static('frontend/build'))
     // Set request type to ALL routes and tell which file to load and where to find it
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
-    })
+    app.get('*', (req, res) => res.sendFile(`${__dirname}/frontend/build/index.html`))
 }
 
 // Start Server
