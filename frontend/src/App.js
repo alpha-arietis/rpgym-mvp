@@ -10,7 +10,7 @@ import RegisterUser from './components/register-user.component'
 import AddReps from './components/add-reps.component';
 import Login from './components/login.component'
 import LandingScreen from './components/landing.screen.component'
-
+import url from './components/url'
 import AppContext from './context/app.context'
 
 
@@ -29,7 +29,7 @@ class App extends Component {
   }
   
   registerSuccess = user => {
-    axios.post('http://localhost:5000/users/register', user)
+    axios.post(`${url}users/register`, user)
     .then(res => {
     localStorage.setItem('token', res.data.token)
     // added below
@@ -50,7 +50,7 @@ class App extends Component {
   }
 
     loginSuccess = user => {
-      axios.post('http://localhost:5000/users/login', user)
+      axios.post(`${url}users/login`, user)
       .then(res => {
       localStorage.setItem('token', res.data.token)
       // added below
