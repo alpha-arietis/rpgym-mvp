@@ -18,7 +18,7 @@ app.use(express.json())
 
 // Connect to DB
 const uri = process.env.ATLAS_URI
-mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true})
+mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true })
 const connection = mongoose.connection
 connection.once('open', () => {
     console.log('Connection to MongoDB established successfully')
@@ -30,8 +30,8 @@ app.use(express.urlencoded({ extended: false }))
 // Routes Setup
 const exercisesRouter = require('./routes/exercises')
 const usersRouter = require('./routes/users')
-app.use('/api/exercises', exercisesRouter)
-app.use('/api/users', usersRouter)
+app.use('/exercises', exercisesRouter)
+app.use('/users', usersRouter)
 
 // Display Static Pages on Deployment
 if (process.env.NODE_ENV === 'production') {
