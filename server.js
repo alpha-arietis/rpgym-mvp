@@ -37,7 +37,8 @@ if (process.env.NODE_ENV === 'production') {
 
 // Connect to DB - HEROKU works with hardcoded URI
 //const uri = process.env.ATLAS_URI
-mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+const uri = process.env.MONGODB_URI
+mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.log(err))
 // const connection = mongoose.connection
@@ -47,6 +48,6 @@ mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true, useCreateIndex:
 
 // Start Server
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`, process.env.ATLAS_URI)
+    console.log(`Server is running on port ${port}`)
 }
 )
