@@ -30,8 +30,8 @@ app.use(express.urlencoded({ extended: false }))
 // Routes Setup
 const exercisesRouter = require('./routes/exercises')
 const usersRouter = require('./routes/users')
-app.use('/exercises', exercisesRouter)
-app.use('/users', usersRouter)
+app.use('/api/exercises', exercisesRouter)
+app.use('/api/users', usersRouter)
 
 // Display Static Pages on Deployment
 if (process.env.NODE_ENV === 'production') {

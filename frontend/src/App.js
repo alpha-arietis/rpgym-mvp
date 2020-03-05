@@ -50,7 +50,7 @@ class App extends Component {
   }
 
     loginSuccess = user => {
-      axios.post(`${url}users/login`, user)
+      axios.post(`${url}api/users/login`, user)
       .then(res => {
       localStorage.setItem('token', res.data.token)
       // added below
@@ -63,7 +63,7 @@ class App extends Component {
         user: JSON.parse(localStorage.getItem('user'))
       })
       // PREBUILD console.log(this.state.user)
-      window.location = '/list'
+      window.location = `${url}list`
       })   
       .catch(err => alert(err.response.data.msg))
     }
